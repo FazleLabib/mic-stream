@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../services/mic_service.dart';
 import '../services/socket_service.dart';
 
@@ -40,6 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _initServices() async {
     try {
+      final prefs = await SharedPreferences.getInstance();
+      _ipController.text = prefs.getString('last_ip') ?? '';
+      _portController.text = (prefs.getInt('last_port') ?? 8080).toString();
       await _micService.init();
 
       _micService.audioStream.listen((audioData) async {
@@ -83,6 +87,10 @@ class _HomeScreenState extends State<HomeScreen> {
         }
 
         await _socketService.connectToServer(ip, port);
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('last_ip', ip);
+        await prefs.setInt('last_port', port);
+        
       } catch (e) {
         setState(() {
           _statusMessage = 'Connection error: $e';
