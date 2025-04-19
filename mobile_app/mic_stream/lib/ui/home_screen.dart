@@ -176,9 +176,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   BoxDecoration _buildBackground() => const BoxDecoration(
     gradient: LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [Color(0xFF1A2151), Color(0xFF0D1333)],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xFF121212), // dark gray
+        Color(0xFF1E1B3A), // deep indigo
+        Color(0xFF0F0C29), // near black
+      ],
     ),
   );
 
