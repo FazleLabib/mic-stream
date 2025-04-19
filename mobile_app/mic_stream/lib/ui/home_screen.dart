@@ -184,7 +184,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildAppBar() => Row(
     children: [
-      const Icon(Icons.mic_rounded, color: Colors.white, size: 30),
       const SizedBox(width: 12),
       const Text(
         'Mic Stream',
